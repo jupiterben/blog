@@ -7,6 +7,11 @@ layout: default
 {% endif %}
 
 <div class="posts">
+
+  {% if paginator.page == 1 %}
+  {% include search.html %}
+  {% endif%}
+
   {% for post in paginator.posts %}
     <article class="post">
       <h1>
@@ -21,7 +26,7 @@ layout: default
         <ul class="tag">
           {% for tag in post.tags %}
           <li>
-            <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
+            <a href="{{ site.baseurl }}/tags.html#{{ tag }}">
               {{ tag }}
             </a>
           </li>
@@ -33,24 +38,36 @@ layout: default
         {{ post.excerpt }}
       </div>
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">阅读更多</a>
     </article>
   {% endfor %}
 </div>
+
+<script> pangu.spacingPage(); </script>
 
 <div class="pagination">
   {% if paginator.previous_page %}
     <span class="prev">
       <a href="{{ site.baseurl }}{{ paginator.previous_page_path }}" class="prev">
-        &#xE000; Previous
+        前一页
       </a>
     </span>
   {% endif %}
   {% if paginator.next_page %}
     <span class="next">
       <a href="{{ site.baseurl}}{{ paginator.next_page_path }}" class="next">
-        Next &#xE001;
+        后一页
       </a>
     </span>
   {% endif %}
 </div>
+
+{% if paginator.page == 1 %}
+
+<form method="POST" action="https://formspree.io/jupiter.ben@live.com">
+  <input type="email" name="email" placeholder="邮箱（请勿使用 qq 邮箱）" style="line-height:2; min-width:220px;" required/>
+  <input type="text" name="message" placeholder="留言（可选）" style="line-height:2; min-width:220px;">
+  <button type="submit" style="line-height:2;">邮件订阅</button>
+</form>
+
+{% endif %}

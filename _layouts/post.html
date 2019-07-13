@@ -25,22 +25,31 @@ layout: default
     {{ content }}
   </div>
 
+  <hr style="border-top:1px solid #28323C;"/>
+  
+
+	<div class="social-share" data-disabled="linkedin,diandian,tencent,facebook"></div>  
+
+  <script> pangu.spacingPage(); </script>
+
   <div class="pagination">
     {% if page.previous.url %}
       <span class="prev" >
           <a href="{{ site.url }}{{ site.baseurl }}{{ page.previous.url }}">
-            &#xE000; {{ page.previous.title }}
+            上一篇：{{ page.previous.title }}
           </a>
       </span>
     {% endif %}
     {% if page.next.url %}
       <span class="next" >
           <a href="{{ site.url }}{{ site.baseurl }}{{ page.next.url }}">
-            {{ page.next.title }} &#xE001;
+            下一篇：{{ page.next.title }}
           </a>
       </span>
     {% endif %}
   </div>
 
+  <h2 id="comments">Comments</h2>
   {% include disqus.html %}
+
 </article>
